@@ -9,5 +9,16 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - postgres:/var/lib/postgresql/data
+  nats:
+    image: nats:2.9.15
+    networks:
+      - internal
+    ports:
+      - 4222:4222
+      - 8222:8222
 volumes:
   postgres: ~
+networks:
+  internal:
+    name: internal
+    driver: bridge
